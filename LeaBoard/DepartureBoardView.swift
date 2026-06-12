@@ -55,8 +55,13 @@ struct DepartureBoardView: View {
                     .foregroundStyle(BoardStyle.amberDim)
             }
             Spacer()
-            Text(Date.now, format: .dateTime.hour(.twoDigits(amPM: .omitted)).minute(.twoDigits))
-                .font(BoardStyle.font(15, weight: .bold))
+            // Live wall clock, ticking on minute boundaries independently of
+            // the data refresh. The footer's "Updated" time stays tied to the
+            // last successful fetch.
+            TimelineView(.everyMinute) { context in
+                Text(context.date, format: .dateTime.hour(.twoDigits(amPM: .omitted)).minute(.twoDigits))
+                    .font(BoardStyle.font(15, weight: .bold))
+            }
         }
         .foregroundStyle(BoardStyle.amber)
     }
