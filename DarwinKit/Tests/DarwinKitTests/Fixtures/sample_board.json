@@ -1,0 +1,139 @@
+{
+  "trainServices": [
+    {
+      "origin": [
+        { "locationName": "Stratford", "crs": "SRA", "via": null }
+      ],
+      "destination": [
+        { "locationName": "Bishops Stortford", "crs": "BIS", "via": null }
+      ],
+      "std": "11:08",
+      "etd": "On time",
+      "platform": "2",
+      "operator": "Greater Anglia",
+      "operatorCode": "LE",
+      "serviceType": "train",
+      "serviceID": "851226LEABRDG_",
+      "isCancelled": false,
+      "subsequentCallingPoints": [
+        {
+          "callingPoint": [
+            { "locationName": "Tottenham Hale", "crs": "TOM", "st": "11:12", "et": "On time" },
+            { "locationName": "Northumberland Park", "crs": "NUM", "st": "11:15", "et": "On time" },
+            { "locationName": "Meridian Water", "crs": "MRW", "st": "11:17", "et": "On time" },
+            { "locationName": "Ponders End", "crs": "PON", "st": "11:20", "et": "On time" },
+            { "locationName": "Brimsdown", "crs": "BMD", "st": "11:23", "et": "On time" },
+            { "locationName": "Enfield Lock", "crs": "ENL", "st": "11:26", "et": "On time" },
+            { "locationName": "Waltham Cross", "crs": "WLC", "st": "11:29", "et": "On time" },
+            { "locationName": "Cheshunt", "crs": "CHN", "st": "11:32", "et": "On time" },
+            { "locationName": "Broxbourne", "crs": "BXB", "st": "11:36", "et": "On time" },
+            { "locationName": "Roydon", "crs": "RYN", "st": "11:41", "et": "On time" },
+            { "locationName": "Harlow Town", "crs": "HWN", "st": "11:45", "et": "On time" },
+            { "locationName": "Sawbridgeworth", "crs": "SAW", "st": "11:51", "et": "On time" },
+            { "locationName": "Bishops Stortford", "crs": "BIS", "st": "11:57", "et": "On time" }
+          ]
+        }
+      ]
+    },
+    {
+      "origin": [
+        { "locationName": "Bishops Stortford", "crs": "BIS", "via": null }
+      ],
+      "destination": [
+        { "locationName": "Stratford", "crs": "SRA", "via": null }
+      ],
+      "std": "11:14",
+      "etd": "On time",
+      "platform": "1",
+      "operator": "Greater Anglia",
+      "operatorCode": "LE",
+      "serviceType": "train",
+      "serviceID": "851301LEABRDG_",
+      "isCancelled": false,
+      "subsequentCallingPoints": [
+        {
+          "callingPoint": [
+            { "locationName": "Stratford", "crs": "SRA", "st": "11:21", "et": "On time" }
+          ]
+        }
+      ]
+    },
+    {
+      "origin": [
+        { "locationName": "Stratford", "crs": "SRA", "via": null }
+      ],
+      "destination": [
+        { "locationName": "Meridian Water", "crs": "MRW", "via": null }
+      ],
+      "std": "11:23",
+      "etd": "11:29",
+      "platform": "2",
+      "operator": "Greater Anglia",
+      "operatorCode": "LE",
+      "serviceType": "train",
+      "serviceID": "851342LEABRDG_",
+      "isCancelled": false,
+      "delayReason": "This train has been delayed by a train fault",
+      "subsequentCallingPoints": [
+        {
+          "callingPoint": [
+            { "locationName": "Tottenham Hale", "crs": "TOM", "st": "11:27", "et": "11:33" },
+            { "locationName": "Northumberland Park", "crs": "NUM", "st": "11:30", "et": "11:36" },
+            { "locationName": "Meridian Water", "crs": "MRW", "st": "11:33", "et": "11:39" }
+          ]
+        }
+      ]
+    },
+    {
+      "origin": [
+        { "locationName": "Meridian Water", "crs": "MRW", "via": null }
+      ],
+      "destination": [
+        { "locationName": "Stratford", "crs": "SRA", "via": null }
+      ],
+      "std": "11:38",
+      "etd": "Cancelled",
+      "platform": null,
+      "operator": "Greater Anglia",
+      "operatorCode": "LE",
+      "serviceType": "train",
+      "serviceID": "851399LEABRDG_",
+      "isCancelled": true,
+      "cancelReason": "This train has been cancelled because of a shortage of train crew",
+      "subsequentCallingPoints": []
+    },
+    {
+      "origin": [
+        { "locationName": "Stratford", "crs": "SRA", "via": null }
+      ],
+      "destination": [
+        { "locationName": "Hertford East", "crs": "HFE", "via": null }
+      ],
+      "std": "11:53",
+      "etd": "Delayed",
+      "platform": "2",
+      "operator": "Greater Anglia",
+      "operatorCode": "LE",
+      "serviceType": "train",
+      "serviceID": "851450LEABRDG_",
+      "isCancelled": false,
+      "subsequentCallingPoints": [
+        {
+          "callingPoint": [
+            { "locationName": "Tottenham Hale", "crs": "TOM", "st": "11:57", "et": "Delayed" },
+            { "locationName": "Ware", "crs": "WAR", "st": "12:21", "et": "Delayed" },
+            { "locationName": "Hertford East", "crs": "HFE", "st": "12:27", "et": "Delayed" }
+          ]
+        }
+      ]
+    }
+  ],
+  "busServices": null,
+  "ferryServices": null,
+  "generatedAt": "2026-06-12T11:02:13.4406884+01:00",
+  "locationName": "Lea Bridge",
+  "crs": "LEB",
+  "nrccMessages": [],
+  "platformAvailable": true,
+  "areServicesAvailable": true
+}

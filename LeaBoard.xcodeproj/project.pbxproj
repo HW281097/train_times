@@ -1,0 +1,282 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FB0000000000000000000001 /* LeaBoardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0000000000000000000001 /* LeaBoardApp.swift */; };
+		FB0000000000000000000002 /* DeparturesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0000000000000000000002 /* DeparturesViewModel.swift */; };
+		FB0000000000000000000003 /* DepartureBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0000000000000000000003 /* DepartureBoardView.swift */; };
+		FB0000000000000000000004 /* DarwinKit in Frameworks */ = {isa = PBXBuildFile; productRef = DA0000000000000000000002 /* DarwinKit */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		FA0000000000000000000001 /* LeaBoardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaBoardApp.swift; sourceTree = "<group>"; };
+		FA0000000000000000000002 /* DeparturesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeparturesViewModel.swift; sourceTree = "<group>"; };
+		FA0000000000000000000003 /* DepartureBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureBoardView.swift; sourceTree = "<group>"; };
+		FA0000000000000000000004 /* LeaBoard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LeaBoard.entitlements; sourceTree = "<group>"; };
+		FA0000000000000000000005 /* LeaBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeaBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FD0000000000000000000002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB0000000000000000000004 /* DarwinKit in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FC0000000000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				FC0000000000000000000002 /* LeaBoard */,
+				FC0000000000000000000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FC0000000000000000000002 /* LeaBoard */ = {
+			isa = PBXGroup;
+			children = (
+				FA0000000000000000000001 /* LeaBoardApp.swift */,
+				FA0000000000000000000002 /* DeparturesViewModel.swift */,
+				FA0000000000000000000003 /* DepartureBoardView.swift */,
+				FA0000000000000000000004 /* LeaBoard.entitlements */,
+			);
+			path = LeaBoard;
+			sourceTree = "<group>";
+		};
+		FC0000000000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FA0000000000000000000005 /* LeaBoard.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FE0000000000000000000001 /* LeaBoard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C10000000000000000000002 /* Build configuration list for PBXNativeTarget "LeaBoard" */;
+			buildPhases = (
+				FD0000000000000000000001 /* Sources */,
+				FD0000000000000000000002 /* Frameworks */,
+				FD0000000000000000000003 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LeaBoard;
+			packageProductDependencies = (
+				DA0000000000000000000002 /* DarwinKit */,
+			);
+			productName = LeaBoard;
+			productReference = FA0000000000000000000005 /* LeaBoard.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FE0000000000000000000002 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					FE0000000000000000000001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = C10000000000000000000001 /* Build configuration list for PBXProject "LeaBoard" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FC0000000000000000000001;
+			packageReferences = (
+				DA0000000000000000000001 /* XCLocalSwiftPackageReference "DarwinKit" */,
+			);
+			productRefGroup = FC0000000000000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FE0000000000000000000001 /* LeaBoard */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FD0000000000000000000003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FD0000000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB0000000000000000000001 /* LeaBoardApp.swift in Sources */,
+				FB0000000000000000000002 /* DeparturesViewModel.swift in Sources */,
+				FB0000000000000000000003 /* DepartureBoardView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CF0000000000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		CF0000000000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		CF0000000000000000000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = LeaBoard/LeaBoard.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.leabridge.LeaBoard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Debug;
+		};
+		CF0000000000000000000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = LeaBoard/LeaBoard.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSUIElement = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = uk.leabridge.LeaBoard;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C10000000000000000000001 /* Build configuration list for PBXProject "LeaBoard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF0000000000000000000001 /* Debug */,
+				CF0000000000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C10000000000000000000002 /* Build configuration list for PBXNativeTarget "LeaBoard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CF0000000000000000000003 /* Debug */,
+				CF0000000000000000000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		DA0000000000000000000001 /* XCLocalSwiftPackageReference "DarwinKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = DarwinKit;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DA0000000000000000000002 /* DarwinKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DarwinKit;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = FE0000000000000000000002 /* Project object */;
+}
