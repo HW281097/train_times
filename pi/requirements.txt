@@ -1,0 +1,9 @@
+# Data + rendering (needed everywhere, including dev machines)
+requests>=2.31
+pillow>=10.0
+
+# OLED driver (only needed on the Raspberry Pi itself)
+luma.oled>=3.13
+
+# Development
+pytest>=7.0

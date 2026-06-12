@@ -22,9 +22,10 @@ LeaBoard.xcodeproj/      Xcode project for the menu bar app
 LeaBoard/                App sources (SwiftUI, MenuBarExtra) — UI only
 DarwinKit/               Swift package: ALL Darwin API logic, zero UI
   Sources/DarwinKit/     Models, client, config, direction rules
-  Tests/DarwinKitTests/  Decoding + direction tests with a saved sample response
+  Tests/DarwinKitTests/  Decoding + direction tests with a captured API response
+pi/                      Phase 2: Raspberry Pi + SSD1322 OLED port (Python)
 docs/API_NOTES.md        Language-neutral API spec (endpoint, auth, quirks)
-config.example.json      Template for your API config
+config.example.json      Template for your API config (shared by both apps)
 ```
 
 The split matters: **everything the app knows about Darwin lives in
@@ -83,12 +84,13 @@ cd DarwinKit && swift test
 
 (or run them in Xcode via the package).
 
-## Phase 2: the physical board 🚧
+## Phase 2: the physical board
 
-The plan is a Raspberry Pi driving an RGB LED dot-matrix display with the
-same Lea Bridge departures, most likely in Python. That port should be
-implemented **from [`docs/API_NOTES.md`](docs/API_NOTES.md) alone** — it
-records the endpoint, auth, response schema, sample JSON, direction rules
-and every quirk discovered so far, and both implementations share the same
-`config.json` format. When the Swift side learns something new about the
-API, update API_NOTES.md in the same change.
+Lives in [`pi/`](pi/): the same departures on a 256×64 SSD1322 amber OLED
+driven by a Raspberry Pi, in Python. It was implemented entirely from
+[`docs/API_NOTES.md`](docs/API_NOTES.md) — the language-neutral record of
+the endpoint, auth, response schema, direction rules and every quirk — and
+its tests run against the same captured API response as the Swift tests,
+so the two implementations are provably in sync. Both apps share the same
+`config.json` format. When either side learns something new about the API,
+update API_NOTES.md in the same change.

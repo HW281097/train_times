@@ -1,0 +1,14 @@
+[Unit]
+Description=LeaBoard OLED departure board
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/train_times/pi
+ExecStart=/usr/bin/python3 -m leaboard.main
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
