@@ -10,8 +10,8 @@ public enum BoardDirection: String, CaseIterable, Sendable {
 
     public var displayName: String {
         switch self {
-        case .stratford: return "Toward Stratford"
-        case .tottenhamHale: return "Toward Tottenham Hale & beyond"
+        case .stratford: return "Towards Stratford"
+        case .tottenhamHale: return "Towards Tottenham Hale & beyond"
         }
     }
 }
