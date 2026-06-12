@@ -44,7 +44,7 @@ struct DepartureBoardView: View {
 
     private var header: some View {
         HStack {
-            Text(model.stationName.uppercased())
+            Text("\(model.stationName) Departures".uppercased())
                 .font(BoardStyle.font(15, weight: .bold))
             if model.isDemo {
                 Text("DEMO")
