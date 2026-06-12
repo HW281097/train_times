@@ -11,6 +11,7 @@
 		FB0000000000000000000002 /* DeparturesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0000000000000000000002 /* DeparturesViewModel.swift */; };
 		FB0000000000000000000003 /* DepartureBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0000000000000000000003 /* DepartureBoardView.swift */; };
 		FB0000000000000000000004 /* DarwinKit in Frameworks */ = {isa = PBXBuildFile; productRef = DA0000000000000000000002 /* DarwinKit */; };
+		FB0000000000000000000005 /* DemoBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0000000000000000000006 /* DemoBoard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		FA0000000000000000000003 /* DepartureBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureBoardView.swift; sourceTree = "<group>"; };
 		FA0000000000000000000004 /* LeaBoard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LeaBoard.entitlements; sourceTree = "<group>"; };
 		FA0000000000000000000005 /* LeaBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeaBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA0000000000000000000006 /* DemoBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoBoard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +49,7 @@
 				FA0000000000000000000001 /* LeaBoardApp.swift */,
 				FA0000000000000000000002 /* DeparturesViewModel.swift */,
 				FA0000000000000000000003 /* DepartureBoardView.swift */,
+				FA0000000000000000000006 /* DemoBoard.swift */,
 				FA0000000000000000000004 /* LeaBoard.entitlements */,
 			);
 			path = LeaBoard;
@@ -137,6 +140,7 @@
 				FB0000000000000000000001 /* LeaBoardApp.swift in Sources */,
 				FB0000000000000000000002 /* DeparturesViewModel.swift in Sources */,
 				FB0000000000000000000003 /* DepartureBoardView.swift in Sources */,
+				FB0000000000000000000005 /* DemoBoard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

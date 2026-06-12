@@ -46,6 +46,14 @@ struct DepartureBoardView: View {
         HStack {
             Text(model.stationName.uppercased())
                 .font(BoardStyle.font(15, weight: .bold))
+            if model.isDemo {
+                Text("DEMO")
+                    .font(BoardStyle.font(10, weight: .bold))
+                    .padding(.horizontal, 4)
+                    .padding(.vertical, 1)
+                    .overlay(RoundedRectangle(cornerRadius: 3).stroke(BoardStyle.amberDim))
+                    .foregroundStyle(BoardStyle.amberDim)
+            }
             Spacer()
             Text(Date.now, format: .dateTime.hour(.twoDigits(amPM: .omitted)).minute(.twoDigits))
                 .font(BoardStyle.font(15, weight: .bold))

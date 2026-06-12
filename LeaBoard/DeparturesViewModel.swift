@@ -20,13 +20,18 @@ final class DeparturesViewModel {
 
     private var client: DarwinClient?
 
+    /// Demo mode (LEABOARD_DEMO=1) renders canned departures so the UI can
+    /// be exercised before an API key exists. The view shows a DEMO badge.
+    let isDemo = ProcessInfo.processInfo.environment["LEABOARD_DEMO"] == "1"
+
     func refresh() async {
         isLoading = true
         defer { isLoading = false }
 
         do {
-            let client = try makeClient()
-            let board = try await client.fetchDepartures()
+            let board = isDemo
+                ? DemoBoard.make()
+                : try await makeClient().fetchDepartures()
             let groups = LeaBridgeDirections.grouped(board.departures)
             stationName = board.stationName
             stratford = Array((groups[.stratford] ?? []).prefix(Self.rowsPerDirection))

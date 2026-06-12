@@ -66,6 +66,12 @@ Alternatively set environment variables — useful in the Xcode scheme:
 Open `LeaBoard.xcodeproj` in Xcode 15+ (macOS 14+), select the **LeaBoard**
 scheme and run. The app appears only in the menu bar (no Dock icon).
 
+**No API key yet?** Run in demo mode: set the environment variable
+`LEABOARD_DEMO=1` in the scheme (Product → Scheme → Edit Scheme → Run →
+Arguments → Environment Variables). The board renders realistic canned
+departures — including a delay and a cancellation — with a DEMO badge in
+the header. Remove the variable once your key arrives.
+
 ### 4. Tests
 
 DarwinKit's tests decode a saved sample API response and exercise the
