@@ -17,15 +17,21 @@ the same captured API response as the Swift code.
 
 ### Wiring (module → Pi header)
 
-| OLED pin | Pi pin | BCM |
-|----------|--------|-----|
-| VCC      | 1 (3.3V) | — |
-| GND      | 6      | —   |
-| D0 / SCLK| 23     | GPIO11 (SCLK) |
-| D1 / MOSI| 19     | GPIO10 (MOSI) |
-| CS       | 24     | GPIO8 (CE0) |
-| DC       | 18     | GPIO24 |
-| RES / RST| 22     | GPIO25 |
+Module pin names vary by vendor; all the common aliases are listed.
+
+| OLED pin (aliases)   | Pi pin | BCM |
+|----------------------|--------|-----|
+| VCC                  | 1 (3.3V) | — |
+| GND                  | 6      | —   |
+| D0 / SCLK / CLK / SCK| 23     | GPIO11 (SCLK) |
+| D1 / MOSI / DIN / SDA| 19     | GPIO10 (MOSI) |
+| CS                   | 24     | GPIO8 (CE0) |
+| DC / D/C             | 18     | GPIO24 |
+| RES / RST            | 22     | GPIO25 |
+
+On 16-pin modules (e.g. the 3.12" boards with the full header), only these
+7 pins are used — typically numbered GND=1, VCC=2, CLK=4, DIN=5, D/C=14,
+RES=15, CS=16. Check your board's silkscreen.
 
 These are luma.oled's defaults, so no pin configuration is needed in code.
 
