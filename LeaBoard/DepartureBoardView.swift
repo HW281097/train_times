@@ -153,10 +153,14 @@ private struct DepartureRow: View {
                 .strikethrough(departure.isCancelled, color: BoardStyle.cancelled)
                 .foregroundStyle(primaryColor)
             Spacer(minLength: 4)
-            Text(departure.platform.map { "Plat \($0)" } ?? "")
+            // Fixed-width columns so platforms stay aligned regardless of
+            // how wide the status text is ("On time" vs "Exp 11:29").
+            Text(departure.platform.map { "Plat \($0)" } ?? "–")
                 .foregroundStyle(BoardStyle.amberDim)
+                .frame(width: 56, alignment: .leading)
             Text(statusText)
                 .foregroundStyle(statusColor)
+                .frame(width: 74, alignment: .trailing)
         }
         .font(BoardStyle.font(13))
         .help(tooltip)
