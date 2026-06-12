@@ -6,7 +6,7 @@ import DarwinKit
 @Observable
 final class DeparturesViewModel {
     /// Rows shown per direction section.
-    static let rowsPerDirection = 5
+    static let rowsPerDirection = 3
 
     private(set) var stationName = "Lea Bridge"
     private(set) var stratford: [Departure] = []

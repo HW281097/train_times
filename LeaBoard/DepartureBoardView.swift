@@ -28,7 +28,7 @@ struct DepartureBoardView: View {
             footer
         }
         .padding(14)
-        .frame(width: 420)
+        .frame(width: 448)
         .background(BoardStyle.background)
         .task {
             // Refresh on open, then every 60 s while the panel stays open.

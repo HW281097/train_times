@@ -15,7 +15,7 @@ enum DemoBoard {
         let departures = [
             Departure(
                 id: "demo-1",
-                destination: "Stratford",
+                destination: "Stratford (London)",
                 destinationCRS: "SRA",
                 via: nil,
                 scheduled: time(4),
@@ -54,7 +54,7 @@ enum DemoBoard {
             ),
             Departure(
                 id: "demo-4",
-                destination: "Stratford",
+                destination: "Stratford (London)",
                 destinationCRS: "SRA",
                 via: nil,
                 scheduled: time(19),
@@ -80,7 +80,7 @@ enum DemoBoard {
             ),
             Departure(
                 id: "demo-6",
-                destination: "Stratford",
+                destination: "Stratford (London)",
                 destinationCRS: "SRA",
                 via: nil,
                 scheduled: time(34),
