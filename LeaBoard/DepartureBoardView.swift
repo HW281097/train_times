@@ -28,7 +28,7 @@ struct DepartureBoardView: View {
             footer
         }
         .padding(14)
-        .frame(width: 448)
+        .frame(width: 428)
         .background(BoardStyle.background)
         .task {
             // Refresh on open, then every 60 s while the panel stays open.
@@ -156,7 +156,12 @@ private struct DepartureRow: View {
     let now: Date
 
     var body: some View {
-        HStack(spacing: 8) {
+        // Five columns with one uniform gap. Each fixed column is sized for
+        // its longest content ("Plat 12", "Cancelled"/"Exp 11:29", "99m");
+        // destination flexes to absorb the rest and is the only column that
+        // can truncate. Status is leading-aligned so the gap after the
+        // platform is identical on every row.
+        HStack(spacing: 10) {
             Text(departure.scheduled)
                 .foregroundStyle(primaryColor)
             Text(departure.destination)
@@ -164,18 +169,16 @@ private struct DepartureRow: View {
                 .truncationMode(.tail)
                 .strikethrough(departure.isCancelled, color: BoardStyle.cancelled)
                 .foregroundStyle(primaryColor)
-            Spacer(minLength: 4)
-            // Fixed-width columns so platforms stay aligned regardless of
-            // how wide the status text is ("On time" vs "Exp 11:29").
+                .frame(maxWidth: .infinity, alignment: .leading)
             Text(departure.platform.map { "Plat \($0)" } ?? "–")
                 .foregroundStyle(BoardStyle.amberDim)
                 .frame(width: 56, alignment: .leading)
             Text(statusText)
                 .foregroundStyle(statusColor)
-                .frame(width: 74, alignment: .trailing)
+                .frame(width: 74, alignment: .leading)
             Text(minutesText)
                 .foregroundStyle(statusColor)
-                .frame(width: 40, alignment: .trailing)
+                .frame(width: 36, alignment: .trailing)
         }
         .font(BoardStyle.font(13))
         .help(tooltip)
