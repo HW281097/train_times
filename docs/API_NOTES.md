@@ -80,41 +80,58 @@ curl -H "x-apikey: $DARWIN_API_KEY" \
 
 ## 3. Sample response
 
-A representative (hand-built, schema-accurate) response for Lea Bridge is
-kept at [`DarwinKit/Tests/DarwinKitTests/Fixtures/sample_board.json`](../DarwinKit/Tests/DarwinKitTests/Fixtures/sample_board.json)
+A **real captured response** (GetDepBoardWithDetails/LEB, 2026-06-12
+11:29 BST, 10 services, pretty-printed but otherwise verbatim) is kept at
+[`DarwinKit/Tests/DarwinKitTests/Fixtures/sample_board.json`](../DarwinKit/Tests/DarwinKitTests/Fixtures/sample_board.json)
 and is the fixture for the Swift decoding tests. The Python port should use
 the same file for its tests. Abridged shape:
 
 ```json
 {
-  "generatedAt": "2026-06-12T11:02:13.4406884+01:00",
-  "locationName": "Lea Bridge",
-  "crs": "LEB",
-  "platformAvailable": true,
-  "nrccMessages": [],
   "trainServices": [
     {
-      "serviceID": "851226LEABRDG_",
-      "std": "11:08",
+      "subsequentCallingPoints": [
+        { "callingPoint": [
+            { "locationName": "Tottenham Hale", "crs": "TOM", "st": "11:39", "et": "On time",
+              "isCancelled": false, "length": 0, "detachFront": false,
+              "affectedByDiversion": false, "rerouteDelay": 0 }
+          ],
+          "serviceType": "train", "serviceChangeRequired": false, "assocIsCancelled": false }
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
+      "origin":      [ { "locationName": "Stratford (London)", "crs": "SRA", "assocIsCancelled": false } ],
+      "destination": [ { "locationName": "Bishops Stortford", "crs": "BIS", "assocIsCancelled": false } ],
+      "std": "11:32",
       "etd": "On time",
       "platform": "2",
       "operator": "Greater Anglia",
       "operatorCode": "LE",
+      "isCircularRoute": false,
       "isCancelled": false,
-      "origin":      [ { "locationName": "Stratford", "crs": "SRA", "via": null } ],
-      "destination": [ { "locationName": "Bishops Stortford", "crs": "BIS", "via": null } ],
-      "subsequentCallingPoints": [
-        { "callingPoint": [
-            { "locationName": "Tottenham Hale", "crs": "TOM", "st": "11:12", "et": "On time" }
-        ] }
-      ]
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "4031123LEABDGE_"
     }
-  ]
+  ],
+  "Xmlns": { "Count": 8 },
+  "generatedAt": "2026-06-12T11:29:12.6568398+01:00",
+  "locationName": "Lea Bridge",
+  "crs": "LEB",
+  "filterType": "to",
+  "platformAvailable": true,
+  "areServicesAvailable": true
 }
 ```
 
-**After you have a real key, capture a live response and replace/extend the
-fixture** — that hardens both ports against schema surprises.
+The capture contained only on-time services; the degraded shapes (revised
+`etd` time, `"Delayed"`, `"Cancelled"` + `cancelReason`/`delayReason`) are
+documented in §4 and exercised by inline JSON in the decoding tests. If a
+live response is ever seen disagreeing with those shapes, update this file
+and the tests together.
 
 ## 4. Field semantics
 
@@ -129,8 +146,14 @@ Per service in `trainServices`:
 | `operator` | string    | e.g. `"Greater Anglia"` (`operatorCode` is the 2-letter TOC) |
 | `isCancelled` | bool?  | Authoritative cancellation flag; may be absent when false   |
 | `cancelReason`, `delayReason` | string? | Human-readable, only when relevant        |
-| `destination` | array  | Array of locations (`locationName`, `crs`, `via`). Almost always one entry; >1 only for trains that divide. Use the first. |
-| `subsequentCallingPoints` | array | Array of *groups*, each `{ "callingPoint": [...] }`. One group normally; extra groups only for dividing trains. Each calling point: `locationName`, `crs`, `st`, `et`. |
+| `destination` | array  | Array of locations (`locationName`, `crs`, optional `via`). Almost always one entry; >1 only for trains that divide. Use the first. |
+| `subsequentCallingPoints` | array | Array of *groups*, each `{ "callingPoint": [...] }`. One group normally; extra groups only for dividing trains. Each calling point: `locationName`, `crs`, `st`, `et` plus ignorable flags. |
+
+Fields both ports deliberately **ignore**: `serviceType`, `length` (0 =
+unknown, not a 0-car train), `detachFront`, `isReverseFormation`,
+`isCircularRoute`, `futureCancellation`, `futureDelay`,
+`filterLocationCancelled`, `assocIsCancelled`, `affectedByDiversion`,
+`rerouteDelay`, `serviceChangeRequired`.
 
 Derived values used by both ports:
 
@@ -152,16 +175,22 @@ Derived values used by both ports:
 4. **Missing means false/absent.** Fields like `isCancelled`, `platform`,
    `delayReason` are omitted rather than sent as `false`/`null` in many
    cases. Decode everything as optional with defaults.
-5. **`nrccMessages`** (station-wide notices) contain embedded HTML-ish
-   markup and their JSON shape has varied across product versions (strings
-   vs `{"Value": ...}` objects). We don't parse them; if the Pi version
-   wants them, sanity-check the live shape first.
+5. **`nrccMessages`** (station-wide notices) are *absent entirely* when
+   there are none (confirmed in the live capture). When present they
+   contain embedded HTML-ish markup and their JSON shape has varied across
+   product versions (strings vs `{"Value": ...}` objects). We don't parse
+   them; if the Pi version wants them, sanity-check the live shape first.
 6. **Base URL versioning** — see §2; never hardcode the product-version path
    segment.
 7. **Times have no dates.** `std`/`etd` are clock times only. Around
    midnight a delayed 23:58 train may show an `etd` of `00:10`; don't try
    to sort by parsing these into datetimes, preserve API order (it's already
    sorted by expected departure).
+8. **`"Xmlns": {"Count": N}`** appears at the top level — a SOAP-to-JSON
+   conversion artifact. In the live capture `Count` was 8 while there were
+   10 services, so it is not a service count. Ignore it entirely.
+9. **`filterType` is present even when unfiltered** (`"to"` in the capture
+   despite no `filterCrs` being sent). Ignore unless filtering is in use.
 
 ## 6. Direction detection at Lea Bridge
 

@@ -1,139 +1,809 @@
 {
   "trainServices": [
     {
-      "origin": [
-        { "locationName": "Stratford", "crs": "SRA", "via": null }
-      ],
-      "destination": [
-        { "locationName": "Bishops Stortford", "crs": "BIS", "via": null }
-      ],
-      "std": "11:08",
-      "etd": "On time",
-      "platform": "2",
-      "operator": "Greater Anglia",
-      "operatorCode": "LE",
-      "serviceType": "train",
-      "serviceID": "851226LEABRDG_",
-      "isCancelled": false,
       "subsequentCallingPoints": [
         {
           "callingPoint": [
-            { "locationName": "Tottenham Hale", "crs": "TOM", "st": "11:12", "et": "On time" },
-            { "locationName": "Northumberland Park", "crs": "NUM", "st": "11:15", "et": "On time" },
-            { "locationName": "Meridian Water", "crs": "MRW", "st": "11:17", "et": "On time" },
-            { "locationName": "Ponders End", "crs": "PON", "st": "11:20", "et": "On time" },
-            { "locationName": "Brimsdown", "crs": "BMD", "st": "11:23", "et": "On time" },
-            { "locationName": "Enfield Lock", "crs": "ENL", "st": "11:26", "et": "On time" },
-            { "locationName": "Waltham Cross", "crs": "WLC", "st": "11:29", "et": "On time" },
-            { "locationName": "Cheshunt", "crs": "CHN", "st": "11:32", "et": "On time" },
-            { "locationName": "Broxbourne", "crs": "BXB", "st": "11:36", "et": "On time" },
-            { "locationName": "Roydon", "crs": "RYN", "st": "11:41", "et": "On time" },
-            { "locationName": "Harlow Town", "crs": "HWN", "st": "11:45", "et": "On time" },
-            { "locationName": "Sawbridgeworth", "crs": "SAW", "st": "11:51", "et": "On time" },
-            { "locationName": "Bishops Stortford", "crs": "BIS", "st": "11:57", "et": "On time" }
-          ]
+            {
+              "locationName": "Stratford (London)",
+              "crs": "SRA",
+              "st": "11:37",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
         }
-      ]
-    },
-    {
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
       "origin": [
-        { "locationName": "Bishops Stortford", "crs": "BIS", "via": null }
+        {
+          "locationName": "Bishops Stortford",
+          "crs": "BIS",
+          "assocIsCancelled": false
+        }
       ],
       "destination": [
-        { "locationName": "Stratford", "crs": "SRA", "via": null }
+        {
+          "locationName": "Stratford (London)",
+          "crs": "SRA",
+          "assocIsCancelled": false
+        }
       ],
-      "std": "11:14",
+      "std": "11:29",
       "etd": "On time",
       "platform": "1",
       "operator": "Greater Anglia",
       "operatorCode": "LE",
-      "serviceType": "train",
-      "serviceID": "851301LEABRDG_",
+      "isCircularRoute": false,
       "isCancelled": false,
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "4048751LEABDGE_"
+    },
+    {
       "subsequentCallingPoints": [
         {
           "callingPoint": [
-            { "locationName": "Stratford", "crs": "SRA", "st": "11:21", "et": "On time" }
-          ]
+            {
+              "locationName": "Tottenham Hale",
+              "crs": "TOM",
+              "st": "11:39",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Cheshunt",
+              "crs": "CHN",
+              "st": "11:48",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Broxbourne",
+              "crs": "BXB",
+              "st": "11:53",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Roydon",
+              "crs": "RYN",
+              "st": "11:59",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Harlow Town",
+              "crs": "HWN",
+              "st": "12:03",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Sawbridgeworth",
+              "crs": "SAW",
+              "st": "12:12",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Bishops Stortford",
+              "crs": "BIS",
+              "st": "12:18",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
         }
-      ]
-    },
-    {
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
       "origin": [
-        { "locationName": "Stratford", "crs": "SRA", "via": null }
+        {
+          "locationName": "Stratford (London)",
+          "crs": "SRA",
+          "assocIsCancelled": false
+        }
       ],
       "destination": [
-        { "locationName": "Meridian Water", "crs": "MRW", "via": null }
+        {
+          "locationName": "Bishops Stortford",
+          "crs": "BIS",
+          "assocIsCancelled": false
+        }
       ],
-      "std": "11:23",
-      "etd": "11:29",
+      "std": "11:32",
+      "etd": "On time",
       "platform": "2",
       "operator": "Greater Anglia",
       "operatorCode": "LE",
-      "serviceType": "train",
-      "serviceID": "851342LEABRDG_",
+      "isCircularRoute": false,
       "isCancelled": false,
-      "delayReason": "This train has been delayed by a train fault",
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "4031123LEABDGE_"
+    },
+    {
       "subsequentCallingPoints": [
         {
           "callingPoint": [
-            { "locationName": "Tottenham Hale", "crs": "TOM", "st": "11:27", "et": "11:33" },
-            { "locationName": "Northumberland Park", "crs": "NUM", "st": "11:30", "et": "11:36" },
-            { "locationName": "Meridian Water", "crs": "MRW", "st": "11:33", "et": "11:39" }
-          ]
+            {
+              "locationName": "Stratford (London)",
+              "crs": "SRA",
+              "st": "11:50",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
         }
-      ]
-    },
-    {
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
       "origin": [
-        { "locationName": "Meridian Water", "crs": "MRW", "via": null }
+        {
+          "locationName": "Meridian Water",
+          "crs": "MRW",
+          "assocIsCancelled": false
+        }
       ],
       "destination": [
-        { "locationName": "Stratford", "crs": "SRA", "via": null }
+        {
+          "locationName": "Stratford (London)",
+          "crs": "SRA",
+          "assocIsCancelled": false
+        }
       ],
-      "std": "11:38",
-      "etd": "Cancelled",
-      "platform": null,
+      "std": "11:44",
+      "etd": "On time",
+      "platform": "1",
       "operator": "Greater Anglia",
       "operatorCode": "LE",
+      "isCircularRoute": false,
+      "isCancelled": false,
+      "filterLocationCancelled": false,
       "serviceType": "train",
-      "serviceID": "851399LEABRDG_",
-      "isCancelled": true,
-      "cancelReason": "This train has been cancelled because of a shortage of train crew",
-      "subsequentCallingPoints": []
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "4050041LEABDGE_"
     },
     {
+      "subsequentCallingPoints": [
+        {
+          "callingPoint": [
+            {
+              "locationName": "Tottenham Hale",
+              "crs": "TOM",
+              "st": "11:53",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Northumberland Park",
+              "crs": "NUM",
+              "st": "11:55",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Meridian Water",
+              "crs": "MRW",
+              "st": "11:58",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
+        }
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
       "origin": [
-        { "locationName": "Stratford", "crs": "SRA", "via": null }
+        {
+          "locationName": "Stratford (London)",
+          "crs": "SRA",
+          "assocIsCancelled": false
+        }
       ],
       "destination": [
-        { "locationName": "Hertford East", "crs": "HFE", "via": null }
+        {
+          "locationName": "Meridian Water",
+          "crs": "MRW",
+          "assocIsCancelled": false
+        }
       ],
-      "std": "11:53",
-      "etd": "Delayed",
+      "std": "11:49",
+      "etd": "On time",
       "platform": "2",
       "operator": "Greater Anglia",
       "operatorCode": "LE",
-      "serviceType": "train",
-      "serviceID": "851450LEABRDG_",
+      "isCircularRoute": false,
       "isCancelled": false,
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "4050042LEABDGE_"
+    },
+    {
       "subsequentCallingPoints": [
         {
           "callingPoint": [
-            { "locationName": "Tottenham Hale", "crs": "TOM", "st": "11:57", "et": "Delayed" },
-            { "locationName": "Ware", "crs": "WAR", "st": "12:21", "et": "Delayed" },
-            { "locationName": "Hertford East", "crs": "HFE", "st": "12:27", "et": "Delayed" }
-          ]
+            {
+              "locationName": "Stratford (London)",
+              "crs": "SRA",
+              "st": "12:07",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
         }
-      ]
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
+      "origin": [
+        {
+          "locationName": "Bishops Stortford",
+          "crs": "BIS",
+          "assocIsCancelled": false
+        }
+      ],
+      "destination": [
+        {
+          "locationName": "Stratford (London)",
+          "crs": "SRA",
+          "assocIsCancelled": false
+        }
+      ],
+      "std": "11:59",
+      "etd": "On time",
+      "platform": "1",
+      "operator": "Greater Anglia",
+      "operatorCode": "LE",
+      "isCircularRoute": false,
+      "isCancelled": false,
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "4048755LEABDGE_"
+    },
+    {
+      "subsequentCallingPoints": [
+        {
+          "callingPoint": [
+            {
+              "locationName": "Tottenham Hale",
+              "crs": "TOM",
+              "st": "12:09",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Northumberland Park",
+              "crs": "NUM",
+              "st": "12:11",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Enfield Lock",
+              "crs": "ENL",
+              "st": "12:17",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Waltham Cross",
+              "crs": "WLC",
+              "st": "12:19",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Cheshunt",
+              "crs": "CHN",
+              "st": "12:22",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Broxbourne",
+              "crs": "BXB",
+              "st": "12:28",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Roydon",
+              "crs": "RYN",
+              "st": "12:36",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Harlow Town",
+              "crs": "HWN",
+              "st": "12:40",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Harlow Mill",
+              "crs": "HWM",
+              "st": "12:44",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Sawbridgeworth",
+              "crs": "SAW",
+              "st": "12:47",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Bishops Stortford",
+              "crs": "BIS",
+              "st": "12:54",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
+        }
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
+      "origin": [
+        {
+          "locationName": "Stratford (London)",
+          "crs": "SRA",
+          "assocIsCancelled": false
+        }
+      ],
+      "destination": [
+        {
+          "locationName": "Bishops Stortford",
+          "crs": "BIS",
+          "assocIsCancelled": false
+        }
+      ],
+      "std": "12:02",
+      "etd": "On time",
+      "platform": "2",
+      "operator": "Greater Anglia",
+      "operatorCode": "LE",
+      "isCircularRoute": false,
+      "isCancelled": false,
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "4031125LEABDGE_"
+    },
+    {
+      "subsequentCallingPoints": [
+        {
+          "callingPoint": [
+            {
+              "locationName": "Stratford (London)",
+              "crs": "SRA",
+              "st": "12:20",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
+        }
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
+      "origin": [
+        {
+          "locationName": "Meridian Water",
+          "crs": "MRW",
+          "assocIsCancelled": false
+        }
+      ],
+      "destination": [
+        {
+          "locationName": "Stratford (London)",
+          "crs": "SRA",
+          "assocIsCancelled": false
+        }
+      ],
+      "std": "12:14",
+      "etd": "On time",
+      "platform": "1",
+      "operator": "Greater Anglia",
+      "operatorCode": "LE",
+      "isCircularRoute": false,
+      "isCancelled": false,
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "4050043LEABDGE_"
+    },
+    {
+      "subsequentCallingPoints": [
+        {
+          "callingPoint": [
+            {
+              "locationName": "Tottenham Hale",
+              "crs": "TOM",
+              "st": "12:23",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Northumberland Park",
+              "crs": "NUM",
+              "st": "12:25",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Meridian Water",
+              "crs": "MRW",
+              "st": "12:28",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
+        }
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
+      "origin": [
+        {
+          "locationName": "Stratford (London)",
+          "crs": "SRA",
+          "assocIsCancelled": false
+        }
+      ],
+      "destination": [
+        {
+          "locationName": "Meridian Water",
+          "crs": "MRW",
+          "assocIsCancelled": false
+        }
+      ],
+      "std": "12:19",
+      "etd": "On time",
+      "platform": "2",
+      "operator": "Greater Anglia",
+      "operatorCode": "LE",
+      "isCircularRoute": false,
+      "isCancelled": false,
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "4050044LEABDGE_"
+    },
+    {
+      "subsequentCallingPoints": [
+        {
+          "callingPoint": [
+            {
+              "locationName": "Stratford (London)",
+              "crs": "SRA",
+              "st": "12:39",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
+        }
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
+      "origin": [
+        {
+          "locationName": "Bishops Stortford",
+          "crs": "BIS",
+          "assocIsCancelled": false
+        }
+      ],
+      "destination": [
+        {
+          "locationName": "Stratford (London)",
+          "crs": "SRA",
+          "assocIsCancelled": false
+        }
+      ],
+      "std": "12:29",
+      "etd": "On time",
+      "platform": "1",
+      "operator": "Greater Anglia",
+      "operatorCode": "LE",
+      "isCircularRoute": false,
+      "isCancelled": false,
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "4048758LEABDGE_"
+    },
+    {
+      "subsequentCallingPoints": [
+        {
+          "callingPoint": [
+            {
+              "locationName": "Tottenham Hale",
+              "crs": "TOM",
+              "st": "12:39",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Cheshunt",
+              "crs": "CHN",
+              "st": "12:48",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Broxbourne",
+              "crs": "BXB",
+              "st": "12:53",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Roydon",
+              "crs": "RYN",
+              "st": "12:59",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Harlow Town",
+              "crs": "HWN",
+              "st": "13:03",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Sawbridgeworth",
+              "crs": "SAW",
+              "st": "13:12",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            },
+            {
+              "locationName": "Bishops Stortford",
+              "crs": "BIS",
+              "st": "13:18",
+              "et": "On time",
+              "isCancelled": false,
+              "length": 0,
+              "detachFront": false,
+              "affectedByDiversion": false,
+              "rerouteDelay": 0
+            }
+          ],
+          "serviceType": "train",
+          "serviceChangeRequired": false,
+          "assocIsCancelled": false
+        }
+      ],
+      "futureCancellation": false,
+      "futureDelay": false,
+      "origin": [
+        {
+          "locationName": "Stratford (London)",
+          "crs": "SRA",
+          "assocIsCancelled": false
+        }
+      ],
+      "destination": [
+        {
+          "locationName": "Bishops Stortford",
+          "crs": "BIS",
+          "assocIsCancelled": false
+        }
+      ],
+      "std": "12:32",
+      "etd": "On time",
+      "platform": "2",
+      "operator": "Greater Anglia",
+      "operatorCode": "LE",
+      "isCircularRoute": false,
+      "isCancelled": false,
+      "filterLocationCancelled": false,
+      "serviceType": "train",
+      "length": 0,
+      "detachFront": false,
+      "isReverseFormation": false,
+      "serviceID": "4031127LEABDGE_"
     }
   ],
-  "busServices": null,
-  "ferryServices": null,
-  "generatedAt": "2026-06-12T11:02:13.4406884+01:00",
+  "Xmlns": {
+    "Count": 8
+  },
+  "generatedAt": "2026-06-12T11:29:12.6568398+01:00",
   "locationName": "Lea Bridge",
   "crs": "LEB",
-  "nrccMessages": [],
+  "filterType": "to",
   "platformAvailable": true,
   "areServicesAvailable": true
 }

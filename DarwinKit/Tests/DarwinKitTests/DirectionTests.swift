@@ -51,7 +51,14 @@ final class DirectionTests: XCTestCase {
         let board = try DepartureBoard.decode(Data(contentsOf: url))
         let groups = LeaBridgeDirections.grouped(board.departures)
 
-        XCTAssertEqual(groups[.stratford]?.map(\.scheduled), ["11:14", "11:38"])
-        XCTAssertEqual(groups[.tottenhamHale]?.map(\.scheduled), ["11:08", "11:23", "11:53"])
+        // Real capture: Stratford and northbound services alternate.
+        XCTAssertEqual(
+            groups[.stratford]?.map(\.scheduled),
+            ["11:29", "11:44", "11:59", "12:14", "12:29"]
+        )
+        XCTAssertEqual(
+            groups[.tottenhamHale]?.map(\.scheduled),
+            ["11:32", "11:49", "12:02", "12:19", "12:32"]
+        )
     }
 }
