@@ -208,7 +208,28 @@ Lookup order (both platforms should follow it):
 
 The real `config.json` is gitignored; never commit a key.
 
-## 8. Polling etiquette
+## 8. Past-train filtering & minutes-until display
+
+Darwin can keep a service on the board for a minute or two after it has
+actually departed, and a polling client adds its own lag, so an "11:29"
+train can still be in the response at 11:31. Both ports apply the same
+post-processing (Swift: `DarwinKit/Sources/DarwinKit/DepartureFilter.swift`):
+
+- **Effective time** := `etd` when it parses as `HH:mm`, else `std`.
+- **Minutes until departure** := effective time − now, in whole minutes,
+  wrapped to the range **−120…1319** (times carry no date — quirk 7 — so
+  anything up to 2 h behind the clock counts as past, everything else as
+  upcoming; this makes a 00:05 train "+7 min" at 23:58 and a 23:58 train
+  "−4 min" at 00:02).
+- **Filter:** drop services with minutes < 0, EXCEPT keep:
+  - `etd == "Delayed"` (no estimate — it hasn't departed, however late);
+  - services whose times don't parse (can't judge, don't hide);
+  - note cancelled services use `std` as effective time, so they stay
+    visible until their scheduled time passes, then drop.
+- **Display:** minutes ≤ 0 renders as "Due"; cancelled and "Delayed"
+  services show a dash instead of minutes.
+
+## 9. Polling etiquette
 
 - The Mac app polls every **60 s while the panel is open** only. The Pi
   board will poll continuously — 60 s is still fine for the free tier, but

@@ -68,8 +68,14 @@ struct DepartureBoardView: View {
 
     @ViewBuilder
     private var boardBody: some View {
-        directionSection(title: BoardDirection.stratford.displayName, departures: model.stratford)
-        directionSection(title: BoardDirection.tottenhamHale.displayName, departures: model.northbound)
+        // TimelineView re-renders each minute so the "minutes until" column
+        // ticks down between data refreshes.
+        TimelineView(.everyMinute) { context in
+            VStack(alignment: .leading, spacing: 10) {
+                directionSection(title: BoardDirection.stratford.displayName, departures: model.stratford, now: context.date)
+                directionSection(title: BoardDirection.tottenhamHale.displayName, departures: model.northbound, now: context.date)
+            }
+        }
 
         if let errorMessage = model.errorMessage {
             Text(errorMessage)
@@ -79,7 +85,7 @@ struct DepartureBoardView: View {
         }
     }
 
-    private func directionSection(title: String, departures: [Departure]) -> some View {
+    private func directionSection(title: String, departures: [Departure], now: Date) -> some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(title.uppercased())
                 .font(BoardStyle.font(11, weight: .semibold))
@@ -92,7 +98,7 @@ struct DepartureBoardView: View {
                     .padding(.vertical, 2)
             } else {
                 ForEach(departures) { departure in
-                    DepartureRow(departure: departure)
+                    DepartureRow(departure: departure, now: now)
                 }
             }
         }
@@ -147,6 +153,7 @@ struct DepartureBoardView: View {
 
 private struct DepartureRow: View {
     let departure: Departure
+    let now: Date
 
     var body: some View {
         HStack(spacing: 8) {
@@ -166,9 +173,18 @@ private struct DepartureRow: View {
             Text(statusText)
                 .foregroundStyle(statusColor)
                 .frame(width: 74, alignment: .trailing)
+            Text(minutesText)
+                .foregroundStyle(statusColor)
+                .frame(width: 40, alignment: .trailing)
         }
         .font(BoardStyle.font(13))
         .help(tooltip)
+    }
+
+    private var minutesText: String {
+        guard !departure.isCancelled, !departure.hasNoEstimate,
+              let minutes = departure.minutesUntilDeparture(from: now) else { return "–" }
+        return minutes <= 0 ? "Due" : "\(minutes)m"
     }
 
     private var statusText: String {

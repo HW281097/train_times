@@ -32,7 +32,8 @@ final class DeparturesViewModel {
             let board = isDemo
                 ? DemoBoard.make()
                 : try await makeClient().fetchDepartures()
-            let groups = LeaBridgeDirections.grouped(board.departures)
+            let upcoming = DepartureFilter.upcoming(board.departures)
+            let groups = LeaBridgeDirections.grouped(upcoming)
             stationName = board.stationName
             stratford = Array((groups[.stratford] ?? []).prefix(Self.rowsPerDirection))
             northbound = Array((groups[.tottenhamHale] ?? []).prefix(Self.rowsPerDirection))
