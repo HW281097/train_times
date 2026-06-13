@@ -75,6 +75,7 @@ curl "https://api.tfl.gov.uk/StopPoint/490009131W/Arrivals?app_key=$TFL_APP_KEY"
 | Concern      | Detail                                                              |
 |--------------|--------------------------------------------------------------------|
 | Auth         | `app_key` query parameter; no header auth                          |
+| User-Agent   | Send an explicit one (`User-Agent: LeaBoard/1.0`). Edge/CDNs in front of these transport APIs commonly return a generic HTML **403** to default client UAs like `python-requests/2.x` — which looks just like an auth failure. `curl`/`URLSession` UAs pass; the Python `requests` client must set one. |
 | Rate limit   | ~500 requests/min with a key; ~50/min keyless. Two stops every 30 s is ~4/min — far below the limit. |
 
 | Status   | Meaning / handling                                                   |

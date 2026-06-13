@@ -60,7 +60,17 @@ GET {baseUrl}/GetDepBoardWithDetails/{crs}?numRows=12&timeWindow=120
 ```
 x-apikey: <consumer key>
 Accept: application/json   (cosmetic; the API returns JSON regardless)
+User-Agent: LeaBoard/1.0   (REQUIRED — see quirk below)
 ```
+
+**Quirk — User-Agent:** the API sits behind an edge/CDN that returns a
+generic HTML **403 Forbidden** (not the gateway's usual JSON auth error) to
+requests with a default client User-Agent such as `python-requests/2.x`.
+Always send an explicit User-Agent. `curl` and Swift's `URLSession` use UAs
+that happen to pass, which is why the Mac app worked before the Pi port did;
+the Python `requests` client must set one. A valid key with a blocked UA looks
+exactly like an auth failure — check the response body (HTML 403 = edge block;
+JSON = gateway).
 
 No other auth. Example:
 

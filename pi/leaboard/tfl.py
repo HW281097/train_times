@@ -18,6 +18,10 @@ from .config import TflConfig, TflStop
 
 BASE_URL = "https://api.tfl.gov.uk"
 
+# Send a real User-Agent: edge/CDNs in front of these APIs commonly 403 the
+# default "python-requests" UA. See TFL_API_NOTES.md §2.2.
+USER_AGENT = "LeaBoard/1.0"
+
 
 class TflError(Exception):
     """Base for all TfL API failures."""
@@ -140,7 +144,10 @@ class TflClient:
         params = {"app_key": self.config.app_key} if self.config.app_key else {}
         try:
             response = self.session.get(
-                url, params=params, headers={"Accept": "application/json"}, timeout=15
+                url,
+                params=params,
+                headers={"Accept": "application/json", "User-Agent": USER_AGENT},
+                timeout=15,
             )
         except requests.RequestException as exc:
             raise NetworkError(str(exc)) from exc

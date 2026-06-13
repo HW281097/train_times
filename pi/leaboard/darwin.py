@@ -121,6 +121,12 @@ def decode_board(payload: dict) -> DepartureBoard:
     )
 
 
+# The API sits behind an edge/CDN that 403s the default "python-requests"
+# User-Agent (a generic HTML 403, not the gateway's JSON auth error). Send a
+# real UA, like the Mac app's URLSession does. See API_NOTES.md §2.
+USER_AGENT = "LeaBoard/1.0"
+
+
 class DarwinClient:
     def __init__(self, config: Config, session: requests.Session | None = None):
         self.config = config
@@ -132,7 +138,11 @@ class DarwinClient:
             response = self.session.get(
                 url,
                 params={"numRows": num_rows, "timeWindow": time_window_minutes},
-                headers={"x-apikey": self.config.api_key, "Accept": "application/json"},
+                headers={
+                    "x-apikey": self.config.api_key,
+                    "Accept": "application/json",
+                    "User-Agent": USER_AGENT,
+                },
                 timeout=15,
             )
         except requests.RequestException as exc:

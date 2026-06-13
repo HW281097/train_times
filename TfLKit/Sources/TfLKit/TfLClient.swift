@@ -30,6 +30,9 @@ public actor TfLClient {
 
         var request = URLRequest(url: components.url!)
         request.setValue("application/json", forHTTPHeaderField: "Accept")
+        // Send an explicit User-Agent: edge/CDNs commonly 403 default client
+        // UAs (see TFL_API_NOTES.md §2.2).
+        request.setValue("LeaBoard/1.0", forHTTPHeaderField: "User-Agent")
         request.timeoutInterval = 15
 
         let (data, response): (Data, URLResponse)
