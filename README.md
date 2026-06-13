@@ -99,8 +99,8 @@ One shared config file holds both APIs:
 - The `tfl` block drives the bus panel: `appKey` (optional), and the two
   stops as `{ id, label }`. A missing `tfl` block just disables the bus
   panel — trains are unaffected.
-- The `display` block (cycle durations) is only used by the Raspberry Pi
-  board; the Mac app ignores it.
+- The `display` block (board mode + cycle durations) is only used by the
+  Raspberry Pi board; the Mac app ignores it.
 
 Alternatively set environment variables — useful in the Xcode scheme:
 `DARWIN_API_KEY` (+ optional `DARWIN_BASE_URL` / `DARWIN_CRS`) for trains,

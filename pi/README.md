@@ -1,9 +1,10 @@
 # LeaBoard Pi — OLED departure board
 
 The same live Lea Bridge departures as the Mac menu bar app, on a
-**256×64 SSD1322 OLED** driven by a Raspberry Pi. The display
+**256×64 SSD1322 OLED** driven by a Raspberry Pi. By default the display
 **auto-alternates** between a **train** screen (~15 s) and a **bus** screen
-(~10 s). Implemented entirely from [`docs/API_NOTES.md`](../docs/API_NOTES.md)
+(~10 s); it can also show just one (see [Display modes](#display-modes)).
+Implemented entirely from [`docs/API_NOTES.md`](../docs/API_NOTES.md)
 (trains) and [`docs/TFL_API_NOTES.md`](../docs/TFL_API_NOTES.md) (buses), and
 tested against the same captured API responses as the Swift code.
 
@@ -57,23 +58,49 @@ nano ~/.config/leaboard/config.json      # paste your RDM key + TfL app_key
 
 Same config file, format and location as the Mac app (API_NOTES §7,
 TFL_API_NOTES §7). The `tfl` block (app_key + the two `{id,label}` stops)
-drives the bus screen; the optional `display` block sets the cycle
-durations (`trainSeconds` / `busSeconds`, default 15 / 10). A missing `tfl`
-block leaves the bus screen showing a setup message while trains keep
-working.
+drives the bus screen. The optional `display` block sets the mode and the
+cycle durations — see [Display modes](#display-modes) below. A missing `tfl`
+block leaves the bus screen showing a setup message while trains keep working
+(and in a trains-only mode you don't need a `tfl` block at all).
 
 ## Run
 
 ```sh
 python3 -m leaboard.main --demo            # canned data, no API key needed
-python3 -m leaboard.main --once            # fetch once, print both boards as text
-python3 -m leaboard.main --png board.png   # render BOTH boards to PNGs and exit
-python3 -m leaboard.main                   # the real thing, on the OLED (alternating)
+python3 -m leaboard.main --once            # fetch once, print the active board(s) as text
+python3 -m leaboard.main --png board.png   # render the active board(s) to PNGs and exit
+python3 -m leaboard.main                   # the real thing, on the OLED
+python3 -m leaboard.main --mode buses      # force a mode for this run (see below)
 ```
 
-`--png board.png` writes two files, `board-trains.png` and `board-buses.png`,
-so you can preview both layouts. `--png` and `--once` also work on a Mac/PC
-(and combine with `--demo`) — handy for previewing without the hardware.
+`--png board.png` writes `board-trains.png` and/or `board-buses.png` depending
+on the mode, so you can preview the layouts. `--png` and `--once` also work on
+a Mac/PC (and combine with `--demo` / `--mode`) — handy for previewing without
+the hardware.
+
+## Display modes
+
+The board runs in one of three modes, set by `display.mode` in `config.json`
+(or overridden per run with `--mode`):
+
+| Mode                   | Shows                                                |
+|------------------------|------------------------------------------------------|
+| `alternate` (default)  | both boards, cycling trains then buses               |
+| `trains`               | the train board only                                 |
+| `buses`                | the bus board only                                   |
+
+```json
+"display": { "mode": "alternate", "trainSeconds": 15, "busSeconds": 10 }
+```
+
+- `trainSeconds` / `busSeconds` — how long each board shows in `alternate`
+  mode (seconds; default 15 / 10). Ignored in single-board modes.
+- In a single-board mode the other API is **never contacted**, so a
+  trains-only board needs no `tfl` block and a buses-only board needs no
+  Darwin key.
+- `--mode {alternate,trains,buses}` overrides the config for one run, e.g.
+  `python3 -m leaboard.main --mode trains` to bring a new board up on trains
+  first, or `--demo --mode buses --png out.png` to preview just the bus layout.
 
 ### Start on boot
 

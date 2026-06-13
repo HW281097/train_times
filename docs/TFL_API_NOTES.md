@@ -239,7 +239,10 @@ is gitignored; never commit a key.
 ## 9. Polling etiquette & board alternation (Pi)
 
 - The Mac bus panel polls every **30 s while the panel is open** only.
-- The Pi auto-alternates: train board ~15 s, bus board ~10 s (configurable,
-  §7). Each board keeps its own poll cadence: **buses no faster than 30 s,
-  trains no faster than 60 s.** Back off when a board is empty overnight
-  (5 min), and keep the last good board on errors rather than blanking.
+- The Pi runs in a configurable `display.mode` — `alternate` (default),
+  `trains`, or `buses`. In `alternate` it cycles the train board (~15 s) and
+  bus board (~10 s), durations from `display.trainSeconds`/`busSeconds` (§7).
+  In a single-board mode the other API is never contacted. Each board keeps
+  its own poll cadence: **buses no faster than 30 s, trains no faster than
+  60 s.** Back off when a board is empty overnight (5 min), and keep the last
+  good board on errors rather than blanking.

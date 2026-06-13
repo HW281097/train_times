@@ -7,5 +7,5 @@
     "directionA": { "id": "490009131W", "label": "Towards Hackney" },
     "directionB": { "id": "490009131E", "label": "Towards Walthamstow" }
   },
-  "display": { "trainSeconds": 15, "busSeconds": 10 }
+  "display": { "mode": "alternate", "trainSeconds": 15, "busSeconds": 10 }
 }

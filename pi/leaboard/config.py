@@ -50,10 +50,22 @@ class TflConfig:
 
 @dataclass(frozen=True)
 class DisplayConfig:
-    """Pi board-cycle durations (seconds). Defaults match TFL_API_NOTES §9."""
+    """Pi display settings. `mode` is one of "alternate" (both boards),
+    "trains" or "buses". Cycle durations (seconds) apply in alternate mode;
+    defaults match TFL_API_NOTES §9."""
 
+    mode: str = "alternate"
     train_seconds: int = 15
     bus_seconds: int = 10
+
+
+VALID_MODES = ("alternate", "trains", "buses")
+
+
+def normalize_mode(value: str | None) -> str:
+    """Coerce a configured/CLI mode to a valid one, defaulting to alternate."""
+    mode = (value or "").strip().lower()
+    return mode if mode in VALID_MODES else "alternate"
 
 
 def _candidates() -> list[Path]:
@@ -161,6 +173,7 @@ def load_display(environ: dict[str, str] | None = None) -> DisplayConfig:
             except ConfigError:
                 break
             return DisplayConfig(
+                mode=normalize_mode(block.get("mode")),
                 train_seconds=int(block.get("trainSeconds", 15)),
                 bus_seconds=int(block.get("busSeconds", 10)),
             )

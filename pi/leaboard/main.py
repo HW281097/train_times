@@ -2,14 +2,21 @@
 
     python3 -m leaboard.main                 drive the SSD1322 OLED
     python3 -m leaboard.main --demo          canned data (no API key needed)
-    python3 -m leaboard.main --png out.png   render both boards to PNGs and exit
-    python3 -m leaboard.main --once          fetch once, print both boards, exit
+    python3 -m leaboard.main --png out.png   render the active board(s) to PNGs
+    python3 -m leaboard.main --once          fetch once, print the active board(s)
+    python3 -m leaboard.main --mode buses    override the configured mode
 
-The display AUTO-ALTERNATES between the train board (~15 s) and the bus board
-(~10 s); durations come from the config `display` block (TFL_API_NOTES §9).
-Each board keeps its own polling cadence — trains no faster than 60 s, buses
-no faster than 30 s — backing off to 5 min when a board is empty (overnight)
-and keeping the last good data on errors.
+The display runs in one of three modes (config `display.mode`, or `--mode`):
+
+  - "alternate" (default): cycle the train board (~15 s) and bus board (~10 s)
+  - "trains": only the train board
+  - "buses": only the bus board
+
+Durations come from the config `display` block (TFL_API_NOTES §9). Each board
+keeps its own polling cadence — trains no faster than 60 s, buses no faster
+than 30 s — backing off to 5 min when a board is empty (overnight) and keeping
+the last good data on errors. In a single-board mode the other API is never
+contacted (so a trains-only Pi needs no TfL config, and vice versa).
 """
 
 from __future__ import annotations
@@ -78,34 +85,41 @@ def _raise(exc):
     return fetch
 
 
-def _make_fetchers(args):
-    """Returns (train_fetch, bus_fetch, labels, display)."""
-    display = config.load_display()
+def _active_boards(mode: str) -> tuple[str, ...]:
+    if mode == "trains":
+        return ("trains",)
+    if mode == "buses":
+        return ("buses",)
+    return ("trains", "buses")
+
+
+def _make_fetchers(args, active):
+    """Build only the fetchers the active mode needs. Returns
+    (train_fetch, bus_fetch, labels) — an unused fetch is None."""
+    labels = ("Towards Hackney", "Towards Walthamstow")
     if args.demo:
-        labels = ("Towards Hackney", "Towards Walthamstow")
-        return demo_board, demo_bus_boards, labels, display
+        return demo_board, demo_bus_boards, labels
 
-    darwin = DarwinClient(config.load())
-    train_fetch = darwin.fetch_departures
+    train_fetch = bus_fetch = None
+    if "trains" in active:
+        train_fetch = DarwinClient(config.load()).fetch_departures
+    if "buses" in active:
+        try:
+            tfl_config = config.load_tfl()
+            tfl = TflClient(tfl_config)
+            labels = (tfl_config.direction_a.label, tfl_config.direction_b.label)
 
-    try:
-        tfl_config = config.load_tfl()
-        tfl = TflClient(tfl_config)
-        labels = (tfl_config.direction_a.label, tfl_config.direction_b.label)
+            def bus_fetch():
+                return (
+                    tfl.fetch_arrivals(tfl_config.direction_a),
+                    tfl.fetch_arrivals(tfl_config.direction_b),
+                )
 
-        def bus_fetch():
-            return (
-                tfl.fetch_arrivals(tfl_config.direction_a),
-                tfl.fetch_arrivals(tfl_config.direction_b),
-            )
-
-    except ConfigError as exc:
-        # No bus config: the bus screen shows the setup error but the cycle
-        # (and the train board) keeps working.
-        labels = ("Towards Hackney", "Towards Walthamstow")
-        bus_fetch = _raise(exc)
-
-    return train_fetch, bus_fetch, labels, display
+        except ConfigError as exc:
+            # No bus config: the bus screen shows the setup error rather than
+            # crashing (only reached in a mode that shows buses).
+            bus_fetch = _raise(exc)
+    return train_fetch, bus_fetch, labels
 
 
 def _bus_sections(boards, labels):
@@ -136,52 +150,63 @@ def _print_bus_boards(boards, labels, now) -> None:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Lea Bridge OLED departure board")
     parser.add_argument("--demo", action="store_true", help="use canned data, no API key needed")
-    parser.add_argument("--png", metavar="PATH", help="render both boards to PNGs and exit")
+    parser.add_argument("--png", metavar="PATH", help="render the active board(s) to PNGs and exit")
     parser.add_argument("--scale", type=int, default=4, help="PNG upscale factor (default 4)")
-    parser.add_argument("--once", action="store_true", help="fetch once, print both boards, exit")
+    parser.add_argument("--once", action="store_true", help="fetch once, print the active board(s), exit")
+    parser.add_argument(
+        "--mode", choices=config.VALID_MODES,
+        help="override config display.mode (alternate / trains / buses)",
+    )
     args = parser.parse_args(argv)
 
-    train_fetch, bus_fetch, labels, display = _make_fetchers(args)
+    display = config.load_display()
+    mode = config.normalize_mode(args.mode or display.mode)
+    active = _active_boards(mode)
+    train_fetch, bus_fetch, labels = _make_fetchers(args, active)
 
     if args.png:
         now = datetime.now()
         stem, ext = os.path.splitext(args.png)
         ext = ext or ".png"
-        train_path, bus_path = f"{stem}-trains{ext}", f"{stem}-buses{ext}"
-
-        to_amber(render_board(train_fetch(), now, fetched_at=now), scale=args.scale).save(train_path)
-        sections = _bus_sections(bus_fetch(), labels)
-        to_amber(render_bus_board(sections, now, fetched_at=now), scale=args.scale).save(bus_path)
-        print(f"Wrote {train_path} and {bus_path}")
+        written = []
+        if "trains" in active:
+            path = f"{stem}-trains{ext}"
+            to_amber(render_board(train_fetch(), now, fetched_at=now), scale=args.scale).save(path)
+            written.append(path)
+        if "buses" in active:
+            path = f"{stem}-buses{ext}"
+            sections = _bus_sections(bus_fetch(), labels)
+            to_amber(render_bus_board(sections, now, fetched_at=now), scale=args.scale).save(path)
+            written.append(path)
+        print("Wrote " + " and ".join(written))
         return 0
 
     if args.once:
         now = datetime.now()
-        _print_train_board(train_fetch(), now)
-        _print_bus_boards(bus_fetch(), labels, now)
+        if "trains" in active:
+            _print_train_board(train_fetch(), now)
+        if "buses" in active:
+            _print_bus_boards(bus_fetch(), labels, now)
         return 0
 
-    trains = Poller(
-        "trains", train_fetch,
-        is_empty=lambda board: not board.departures,
-        errors=DarwinError, base_interval=60,
-    )
-    buses = Poller(
-        "buses", bus_fetch,
-        is_empty=lambda boards: all(not b.arrivals for b in boards),
-        errors=(TflError, ConfigError), base_interval=30,
-    )
+    trains = buses = None
+    schedule = []  # (seconds_on_screen, render_fn)
+    if "trains" in active:
+        trains = Poller(
+            "trains", train_fetch,
+            is_empty=lambda board: not board.departures,
+            errors=DarwinError, base_interval=60,
+        )
+        schedule.append((display.train_seconds, lambda now: render_board(trains.data, now, trains.fetched_at, trains.error)))
+    if "buses" in active:
+        buses = Poller(
+            "buses", bus_fetch,
+            is_empty=lambda boards: all(not b.arrivals for b in boards),
+            errors=(TflError, ConfigError), base_interval=30,
+        )
+        schedule.append((display.bus_seconds, lambda now: render_bus_board(_bus_sections(buses.data, labels), now, buses.fetched_at, buses.error)))
 
-    def render_trains(now):
-        return render_board(trains.data, now, trains.fetched_at, trains.error)
-
-    def render_buses(now):
-        return render_bus_board(_bus_sections(buses.data, labels), now, buses.fetched_at, buses.error)
-
-    schedule = [
-        (display.train_seconds, render_trains),
-        (display.bus_seconds, render_buses),
-    ]
+    pollers = [p for p in (trains, buses) if p is not None]
 
     device = make_device()
     while True:
@@ -189,8 +214,8 @@ def main(argv: list[str] | None = None) -> int:
             end = time.monotonic() + seconds
             while True:
                 mono = time.monotonic()
-                trains.poll_if_due(mono)
-                buses.poll_if_due(mono)
+                for poller in pollers:
+                    poller.poll_if_due(mono)
                 device.display(render(datetime.now()).convert(device.mode))
                 if mono >= end:
                     break
