@@ -29,7 +29,7 @@ struct BusBoardView: View {
             footer
         }
         .padding(14)
-        .frame(width: 480)
+        .frame(width: 450)
         .background(BusStyle.background)
         .task {
             // Refresh on open, then every 30 s while the panel stays open.
@@ -171,19 +171,16 @@ private struct BusRow: View {
                 .padding(.horizontal, 4)
                 .background(BusStyle.tflRed)
                 .clipShape(RoundedRectangle(cornerRadius: 5))
-            // Destination sizes to its content (truncating only when a name is
-            // genuinely too long for the window); the time sits just after it,
-            // with any slack pushed to the trailing edge instead of opening a
-            // gap between the two.
             Text(arrival.destination)
                 .font(BusStyle.font(13))
                 .foregroundStyle(BusStyle.white)
                 .lineLimit(1)
                 .truncationMode(.tail)
+                .frame(maxWidth: .infinity, alignment: .leading)
             Text(minutesText)
                 .font(BusStyle.font(13, weight: .semibold))
                 .foregroundStyle(isDue ? BusStyle.due : BusStyle.white)
-            Spacer(minLength: 8)
+                .frame(width: 52, alignment: .trailing)
         }
     }
 
