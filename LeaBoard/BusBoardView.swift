@@ -29,7 +29,7 @@ struct BusBoardView: View {
             footer
         }
         .padding(14)
-        .frame(width: 360)
+        .frame(width: 480)
         .background(BusStyle.background)
         .task {
             // Refresh on open, then every 30 s while the panel stays open.
@@ -45,8 +45,10 @@ struct BusBoardView: View {
     private var header: some View {
         HStack(spacing: 8) {
             Image(systemName: "bus.doubledecker.fill")
-            Text("Lea Bridge Buses".uppercased())
-                .font(BusStyle.font(15, weight: .heavy))
+            Text("Emmanuel Parish Church Bus Arrivals".uppercased())
+                .font(BusStyle.font(14, weight: .heavy))
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
             if model.isDemo {
                 Text("DEMO")
                     .font(BusStyle.font(10, weight: .bold))
