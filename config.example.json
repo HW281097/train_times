@@ -1,5 +1,11 @@
 {
   "apiKey": "YOUR_CONSUMER_KEY",
   "baseUrl": "https://api1.raildata.org.uk/1010-live-departure-board-dep1_2/LDBWS/api/20220120",
-  "crs": "LEB"
+  "crs": "LEB",
+  "tfl": {
+    "appKey": "YOUR_TFL_APP_KEY",
+    "directionA": { "id": "490009131W", "label": "Towards Hackney" },
+    "directionB": { "id": "490009131E", "label": "Towards Walthamstow" }
+  },
+  "display": { "trainSeconds": 15, "busSeconds": 10 }
 }
