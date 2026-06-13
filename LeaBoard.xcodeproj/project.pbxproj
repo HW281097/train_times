@@ -12,6 +12,10 @@
 		FB0000000000000000000003 /* DepartureBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0000000000000000000003 /* DepartureBoardView.swift */; };
 		FB0000000000000000000004 /* DarwinKit in Frameworks */ = {isa = PBXBuildFile; productRef = DA0000000000000000000002 /* DarwinKit */; };
 		FB0000000000000000000005 /* DemoBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0000000000000000000006 /* DemoBoard.swift */; };
+		FB0000000000000000000006 /* BusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0000000000000000000007 /* BusViewModel.swift */; };
+		FB0000000000000000000007 /* BusBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0000000000000000000008 /* BusBoardView.swift */; };
+		FB0000000000000000000008 /* DemoBusBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0000000000000000000009 /* DemoBusBoard.swift */; };
+		FB0000000000000000000009 /* TfLKit in Frameworks */ = {isa = PBXBuildFile; productRef = DA0000000000000000000004 /* TfLKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +25,9 @@
 		FA0000000000000000000004 /* LeaBoard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LeaBoard.entitlements; sourceTree = "<group>"; };
 		FA0000000000000000000005 /* LeaBoard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeaBoard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA0000000000000000000006 /* DemoBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoBoard.swift; sourceTree = "<group>"; };
+		FA0000000000000000000007 /* BusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusViewModel.swift; sourceTree = "<group>"; };
+		FA0000000000000000000008 /* BusBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusBoardView.swift; sourceTree = "<group>"; };
+		FA0000000000000000000009 /* DemoBusBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoBusBoard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +36,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB0000000000000000000004 /* DarwinKit in Frameworks */,
+				FB0000000000000000000009 /* TfLKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +58,9 @@
 				FA0000000000000000000002 /* DeparturesViewModel.swift */,
 				FA0000000000000000000003 /* DepartureBoardView.swift */,
 				FA0000000000000000000006 /* DemoBoard.swift */,
+				FA0000000000000000000007 /* BusViewModel.swift */,
+				FA0000000000000000000008 /* BusBoardView.swift */,
+				FA0000000000000000000009 /* DemoBusBoard.swift */,
 				FA0000000000000000000004 /* LeaBoard.entitlements */,
 			);
 			path = LeaBoard;
@@ -81,6 +92,7 @@
 			name = LeaBoard;
 			packageProductDependencies = (
 				DA0000000000000000000002 /* DarwinKit */,
+				DA0000000000000000000004 /* TfLKit */,
 			);
 			productName = LeaBoard;
 			productReference = FA0000000000000000000005 /* LeaBoard.app */;
@@ -112,6 +124,7 @@
 			mainGroup = FC0000000000000000000001;
 			packageReferences = (
 				DA0000000000000000000001 /* XCLocalSwiftPackageReference "DarwinKit" */,
+				DA0000000000000000000003 /* XCLocalSwiftPackageReference "TfLKit" */,
 			);
 			productRefGroup = FC0000000000000000000003 /* Products */;
 			projectDirPath = "";
@@ -141,6 +154,9 @@
 				FB0000000000000000000002 /* DeparturesViewModel.swift in Sources */,
 				FB0000000000000000000003 /* DepartureBoardView.swift in Sources */,
 				FB0000000000000000000005 /* DemoBoard.swift in Sources */,
+				FB0000000000000000000006 /* BusViewModel.swift in Sources */,
+				FB0000000000000000000007 /* BusBoardView.swift in Sources */,
+				FB0000000000000000000008 /* DemoBusBoard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,12 +289,20 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = DarwinKit;
 		};
+		DA0000000000000000000003 /* XCLocalSwiftPackageReference "TfLKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = TfLKit;
+		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		DA0000000000000000000002 /* DarwinKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = DarwinKit;
+		};
+		DA0000000000000000000004 /* TfLKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TfLKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
