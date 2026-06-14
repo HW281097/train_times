@@ -93,10 +93,17 @@ def _section(draw, body, small, y: int, title: str, arrivals, now, fetched_at) -
         _row(draw, body, y + 8 + index * 8, arrival, now, fetched_at)
 
 
+def short_destination(name: str) -> str:
+    """Trim a long TfL destination to its leading place name so it fits the
+    narrow OLED, e.g. "Smithfield, St Bartholomew's Hospital" -> "Smithfield".
+    Names without a comma are returned unchanged."""
+    return name.split(",")[0].strip()
+
+
 def _row(draw, body, y: int, arrival: BusArrival, now, fetched_at) -> None:
     # Route number, prominent. Fixed destination start (x=24) so 2- and
     # 3-character route numbers (55, N38) both align.
     draw.text((2, y), arrival.line_name, font=body, fill=BRIGHT)
-    draw.text((24, y), arrival.destination[:DEST_MAX_CHARS], font=body, fill=BRIGHT)
+    draw.text((24, y), short_destination(arrival.destination)[:DEST_MAX_CHARS], font=body, fill=BRIGHT)
     minutes = minutes_text(arrival, now, fetched_at)
     draw.text((254 - 5 * len(minutes), y), minutes, font=body, fill=BRIGHT)

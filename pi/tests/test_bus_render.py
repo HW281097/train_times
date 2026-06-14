@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 from leaboard.demo import demo_bus_boards
 from leaboard.render import HEIGHT, WIDTH
 from leaboard.tfl import BusArrival
-from leaboard.bus_render import minutes_text, render_bus_board, to_amber
+from leaboard.bus_render import minutes_text, render_bus_board, short_destination, to_amber
 
 NOW = datetime(2026, 6, 13, 12, 30)
 LABELS = ("Towards Hackney", "Towards Walthamstow")
@@ -47,6 +47,12 @@ def test_minutes_text():
     # Ticks down as wall time elapses past the fetch.
     assert minutes_text(soon, NOW + timedelta(minutes=10), fetched_at=NOW) == "2 min"
     assert minutes_text(soon, NOW + timedelta(minutes=13), fetched_at=NOW) == "Due"
+
+
+def test_short_destination():
+    assert short_destination("Smithfield, St Bartholomew's Hospital") == "Smithfield"
+    assert short_destination("Walthamstow Central") == "Walthamstow Central"
+    assert short_destination("Oxford Circus") == "Oxford Circus"
 
 
 def test_amber_upscale():
