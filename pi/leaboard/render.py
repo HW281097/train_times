@@ -82,9 +82,10 @@ def render_board(
     draw = ImageDraw.Draw(image)
     body, small = _font("5x7"), _font("4x6")
 
-    # Header: station + live clock.
+    # Header: station + board name (so the alternating screens are obviously
+    # different) + live clock.
     station = (board.station_name if board else "Lea Bridge").upper()
-    draw.text((2, 0), station, font=body, fill=BRIGHT)
+    draw.text((2, 0), f"{station} TRAINS", font=body, fill=BRIGHT)
     clock = now.strftime("%H:%M:%S")
     draw.text((WIDTH - 2 - 5 * len(clock), 0), clock, font=body, fill=BRIGHT)
 

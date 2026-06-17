@@ -39,6 +39,9 @@ public actor DarwinClient {
         var request = URLRequest(url: components.url!)
         request.setValue(config.apiKey, forHTTPHeaderField: "x-apikey")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
+        // The API sits behind an edge/CDN that 403s some default client
+        // User-Agents; send an explicit one (see API_NOTES.md §2).
+        request.setValue("LeaBoard/1.0", forHTTPHeaderField: "User-Agent")
         request.timeoutInterval = 15
 
         let (data, response): (Data, URLResponse)

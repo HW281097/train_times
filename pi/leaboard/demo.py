@@ -6,6 +6,7 @@ from __future__ import annotations
 from datetime import datetime, timedelta
 
 from .darwin import Departure, DepartureBoard
+from .tfl import BusArrival, BusBoard
 
 
 def _time(now: datetime, minutes: int) -> str:
@@ -57,3 +58,42 @@ def demo_board(now: datetime | None = None) -> DepartureBoard:
     return DepartureBoard(
         station_name="Lea Bridge", crs="LEB", generated_at=now, departures=departures
     )
+
+
+def demo_bus_boards(now: datetime | None = None) -> tuple[BusBoard, BusBoard]:
+    """Canned bus arrivals for both directions (mirrors the Mac app's demo).
+    Routes mix 2- and 3-character numbers to exercise column spacing."""
+    now = now or datetime.now()
+
+    def arrival(id: str, line: str, dest: str, minutes: int) -> BusArrival:
+        return BusArrival(
+            id=id,
+            line_name=line,
+            destination=dest,
+            time_to_station=minutes * 60,
+            expected_arrival=now + timedelta(minutes=minutes),
+        )
+
+    towards_hackney = BusBoard(
+        stop_id="490009131W",
+        stop_name="Emmanuel Parish Church",
+        generated_at=now,
+        arrivals=(
+            arrival("demo-a1", "55", "Oxford Circus", 0),
+            arrival("demo-a2", "56", "Smithfield, St Bartholomew's Hospital", 3),
+            arrival("demo-a3", "N38", "Hackney Central", 8),
+            arrival("demo-a4", "55", "Oxford Circus", 12),
+        ),
+    )
+    towards_walthamstow = BusBoard(
+        stop_id="490009131E",
+        stop_name="Emmanuel Parish Church",
+        generated_at=now,
+        arrivals=(
+            arrival("demo-b1", "55", "Walthamstow Central", 2),
+            arrival("demo-b2", "N55", "Walthamstow Central", 6),
+            arrival("demo-b3", "56", "Whipps Cross", 11),
+            arrival("demo-b4", "55", "Walthamstow Central", 19),
+        ),
+    )
+    return towards_hackney, towards_walthamstow
