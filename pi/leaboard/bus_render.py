@@ -6,16 +6,18 @@ header naming the board ("LEA BRIDGE BUSES"). TFL_API_NOTES.md §8.
 
 Layout (y, font):
      0  header (5x7 bright): "LEA BRIDGE BUSES" + live clock
-    10  section title (4x6 dim): TOWARDS HACKNEY
-    18  arrival row (5x7)
-    26  arrival row
-    35  section title (4x6 dim): TOWARDS WALTHAMSTOW
-    43  arrival row
-    51  arrival row
+     9  section title (4x6 dim): TOWARDS HACKNEY
+    17  arrival row (5x7)        } 3 rows — Hackney is the priority direction
+    25  arrival row
+    33  arrival row
+    41  section title (4x6 dim): TOWARDS WALTHAMSTOW
+    49  arrival row              } 1 row
     58  footer (4x6 dim): last-updated + error state
 
-Row columns (5px/char): route x=2 (2-3 chars), destination x=24 (the only
-column that truncates), minutes right-aligned to x=254.
+Rows per section are ROWS_PER_SECTION; each section reserves its full height
+so the second always starts at the same y. Row columns (5px/char): route x=2
+(2-3 chars), destination x=24 (the only column that truncates), minutes
+right-aligned to x=254.
 """
 
 from __future__ import annotations
@@ -28,7 +30,9 @@ from .render import BRIGHT, DIM, HEIGHT, WIDTH, _font, _wrapped_text, to_amber
 from .tfl import BusArrival
 
 BOARD_NAME = "LEA BRIDGE BUSES"
-ROWS_PER_DIRECTION = 2
+# Rows shown per section, by position: (Towards Hackney, Towards Walthamstow).
+# Hackney gets more room as it's the priority direction.
+ROWS_PER_SECTION = (3, 1)
 DEST_MAX_CHARS = 32
 
 __all__ = ["render_bus_board", "minutes_text", "to_amber", "WIDTH", "HEIGHT"]
@@ -68,8 +72,9 @@ def render_bus_board(
         message = str(error) if error else "Waiting for first update..."
         _wrapped_text(draw, message, body)
     else:
-        for (title, arrivals), y in zip(sections, (10, 35)):
-            _section(draw, body, small, y, title, arrivals, now, fetched_at)
+        y = 9
+        for (title, arrivals), max_rows in zip(sections, ROWS_PER_SECTION):
+            y = _section(draw, body, small, y, title, arrivals, now, fetched_at, max_rows)
 
     # Footer: freshness + error state (mirrors the train board).
     if error is not None and any(a is not None for _, a in sections):
@@ -84,13 +89,17 @@ def render_bus_board(
     return image
 
 
-def _section(draw, body, small, y: int, title: str, arrivals, now, fetched_at) -> None:
+def _section(draw, body, small, y: int, title: str, arrivals, now, fetched_at, max_rows: int) -> int:
+    """Draw a titled section and return the y where the next one should start.
+    Always reserves space for max_rows so later sections sit at a stable y."""
     draw.text((2, y), title.upper(), font=small, fill=DIM)
-    if not arrivals:
+    rows = (arrivals or ())[:max_rows]
+    if not rows:
         draw.text((24, y + 8), "No buses", font=body, fill=DIM)
-        return
-    for index, arrival in enumerate(arrivals[:ROWS_PER_DIRECTION]):
-        _row(draw, body, y + 8 + index * 8, arrival, now, fetched_at)
+    else:
+        for index, arrival in enumerate(rows):
+            _row(draw, body, y + 8 + index * 8, arrival, now, fetched_at)
+    return y + 8 + max_rows * 8
 
 
 def short_destination(name: str) -> str:

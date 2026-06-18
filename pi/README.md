@@ -147,15 +147,19 @@ Bus screen (`leaboard/bus_render.py`):
 LEA BRIDGE BUSES                             11:30:42
 TOWARDS HACKNEY
 55  Oxford Circus                            Due
-56  Smithfield, St Bartholomew's Hos         3 min
+56  Smithfield                               3 min
+55  Oxford Circus                            9 min
 TOWARDS WALTHAMSTOW
 55  Walthamstow Central                      2 min
-N55 Walthamstow Central                      6 min
 Updated 11:30:42
 ```
 
-Two rows per direction (`ROWS_PER_DIRECTION` in each renderer); the bus
-section titles come from the config `label`s. The OLED is monochrome amber,
+The train board shows two rows per direction (`ROWS_PER_DIRECTION` in
+`leaboard/render.py`); the bus board shows 3 rows for the priority Hackney
+direction and 1 for Walthamstow (`ROWS_PER_SECTION` in
+`leaboard/bus_render.py`), and trims long destinations to the leading place
+name ("Smithfield"). Section titles come from the config `label`s. The OLED
+is monochrome amber,
 so the train board strikes cancellations through rather than colouring them
 red, and section titles/footer use a dimmer grey level. The bus route column
 is fixed-width so 2- and 3-character numbers (55, N38) align. Fonts are the
